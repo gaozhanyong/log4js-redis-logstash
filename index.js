@@ -12,10 +12,13 @@ function logstashRedis(config, layout) {
   }
 
   return function log(loggingEvent) {
+    let fields = {};
+
+    fields.level = loggingEvent.level.levelStr;
+    fields.category = loggingEvent.categoryName;
+
     if (loggingEvent.data.length > 1) {
       const secondEvData = loggingEvent.data[1];
-
-      let fields = {};
       Object.assign(fields, config.fields);
       if (util.isObject(secondEvData)) {
         for (let k in secondEvData) {
@@ -23,8 +26,6 @@ function logstashRedis(config, layout) {
         }
       }
     }
-    fields.level = loggingEvent.level.levelStr;
-    fields.category = loggingEvent.categoryName;
 
     const logObject = {
       '@version': '1',
@@ -41,7 +42,7 @@ function sendLog(redis, key, logObject) {
   const logString = JSON.stringify(logObject);
   redis.rpush(key, logString, function (err, result) {
     if (err) {
-      console.error("log4js-logstash-redis - Error: %s", util.inspect(err))
+      console.error("log4js-redis-logstash - Error: %s", util.inspect(err))
     }
   });
 }
