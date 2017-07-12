@@ -1,0 +1,32 @@
+{
+  "name": "log4js-redis-logstash",
+  "version": "0.1.0",
+  "description": "log4js-redis-logstash, fork from log4js-logstash-redis",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul cover _mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gaozhanyong@github.com/gaozhanyong/log4js-redis-logstash.git"
+  },
+  "keywords": [
+    "log4js",
+     "redis",
+    "logstash"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gaozhanyong/log4js-redis-logstash/issues"
+  },
+  "homepage": "https://github.com/gaozhanyong/log4js-redis-logstash#readme",
+  "dependencies": {
+    "ioredis": "^3.1.1",
+    "log4js": "^1.1.0"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "power-assert": "^1.4.2"
+  }
+}
